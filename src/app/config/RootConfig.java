@@ -20,10 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableTransactionManagement
 @Import({SecurityConfig.class})
-@ComponentScan(basePackages={"app"},
-excludeFilters={
-		@Filter(type=FilterType.ANNOTATION,value=EnableWebMvc.class)
-})
+@ComponentScan(basePackages={"app.service","app.dao","app.beans"})
 public class RootConfig {
 
 	@Bean

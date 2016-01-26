@@ -44,8 +44,8 @@ public class NoteController {
 	}
 	
 	@RequestMapping(value="/edit", method=RequestMethod.POST)
-	public String showEdit(Model model, @RequestParam String id){
-		model.addAttribute("note", noteService.getNote(Integer.parseInt(id)));
+	public String showEdit(Model model, @RequestParam int id){
+		model.addAttribute("note", noteService.getNote(id));
 		return "newnote";
 	}
 	
