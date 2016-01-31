@@ -1,10 +1,16 @@
 package app.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="notes")
@@ -12,7 +18,9 @@ public class Note {
 
 	@Id
 	private int id;
-	private String date;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date date;
 	private String text;
 	@ManyToOne
 	@JoinColumn(name="username")
@@ -22,7 +30,7 @@ public class Note {
 		this.user = new User();
 	}
 	
-	public Note(int id, String date, String text, User user) {
+	public Note(int id, Date date, String text, User user) {
 		this.id = id;
 		this.date = date;
 		this.text = text;
@@ -37,11 +45,11 @@ public class Note {
 		this.id = id;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

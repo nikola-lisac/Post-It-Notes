@@ -10,7 +10,7 @@
 <body>
 	<sf:form action="${pageContext.request.contextPath}/savenote" commandName="note" method="post">
 		<label>Date</label>	
-		<sf:input path="date" name="date"/>
+		<sf:input type="date" path="date" name="date"/>
 		<label>Text</label>	
 		<sf:input path="text" name="text"/>
 		<sf:hidden name="id" path="id"/>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 
@@ -36,7 +37,8 @@
 				<div class="note">
 				<p>
 					date:
-					<c:out value="${note.date}" />
+					<fmt:formatDate value="${note.date}" pattern="dd.MM.yyyy."/>
+<%-- 					<c:out value="${note.date}" /> --%>
 				</p>
 
 				<p>
