@@ -35,7 +35,7 @@ public class UserDao implements UserDaoAbstract {
 
 	@Override
 	public void addUser(User user) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setEncodedPassword(passwordEncoder.encode(user.getPassword()));
 		session().save(user);
 	}
 

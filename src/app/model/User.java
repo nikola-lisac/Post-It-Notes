@@ -1,20 +1,61 @@
 package app.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
-	
+
 	@Id
 	private String username;
+	@Transient
 	private String password;
+	@Transient
+	private String confirmPassword;
+	@Column(name = "password")
+	private String encodedPassword;
 	private String name;
 	private String email;
 	private boolean enabled = false;
 	private String authority;
+	@OneToMany(mappedBy = "user")
+	private List<Note> notes = new ArrayList<Note>();
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+	public String getEncodedPassword() {
+		return encodedPassword;
+	}
+
+	public void setEncodedPassword(String encodedPassword) {
+		this.encodedPassword = encodedPassword;
+	}
+
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
 
 	public User() {
 
@@ -28,8 +69,6 @@ public class User {
 		this.enabled = enabled;
 		this.authority = authority;
 	}
-
-
 
 	public String getUsername() {
 		return username;
@@ -81,12 +120,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", name=" + name + ", email=" + email
-				+ ", enabled=" + enabled + ", authority=" + authority + "]";
+		return "User [username=" + username + ", password=" + password + ", confirmPassword=" + confirmPassword
+				+ ", encodedPassword=" + encodedPassword + ", name=" + name + ", email=" + email + ", enabled="
+				+ enabled + ", authority=" + authority + ", notes=" + notes + "]";
 	}
-
-	
-	
-	
 
 }

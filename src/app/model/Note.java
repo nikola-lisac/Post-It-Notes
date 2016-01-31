@@ -3,8 +3,11 @@ package app.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -16,14 +19,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="notes")
 public class Note {
 
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	private String text;
 	@ManyToOne
-	@JoinColumn(name="username")
+	@JoinColumn(name="user_username")
 	private User user;
 
 	public Note(){

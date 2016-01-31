@@ -42,7 +42,8 @@ public class RootConfig {
 		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setPackagesToScan(new String[]{"app.dao","app.model","app.service"});
 		Properties hibernateProperties = new Properties();
-		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		
 		sessionFactory.setHibernateProperties(hibernateProperties);
